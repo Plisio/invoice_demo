@@ -1,0 +1,62 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "4f0e45ede315b8675de7d4acbffab9c3",
+    "packages": [
+        {
+            "name": "plisio/plisio-api-php",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Plisio/plisio-api-php.git",
+                "reference": "042d768ec3d0cfa2310ef63c1f59264aacec112c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Plisio/plisio-api-php/zipball/042d768ec3d0cfa2310ef63c1f59264aacec112c",
+                "reference": "042d768ec3d0cfa2310ef63c1f59264aacec112c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Plisio\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Plisio API library for PHP",
+            "homepage": "https://plisio.net",
+            "keywords": [
+                "bitcoin",
+                "bitcoin cash",
+                "dogecoin",
+                "ethereum",
+                "gateway",
+                "litecoin",
+                "merchant",
+                "payment",
+                "plisio",
+                "zcash"
+            ],
+            "time": "2020-08-14T12:04:02+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

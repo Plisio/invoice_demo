@@ -1,0 +1,7 @@
+{
+    "name": "plisio/custom_demo",
+    "require": {
+        "plisio/plisio-api-php": "^1.0.1"
+    },
+    "license": "MIT"
+}
