@@ -1,7 +1,13 @@
 {
     "name": "plisio/custom_demo",
     "require": {
-        "plisio/plisio-api-php": "^1.0.1"
+        "plisio/plisio-api-php": "^1.0.2",
+        "ext-pdo": "*"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "autoload": {
+        "classmap": [
+            "includes/"
+        ]
+    }
 }

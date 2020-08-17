@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f0e45ede315b8675de7d4acbffab9c3",
+    "content-hash": "f195217c0a2fd4bd64bd3a872a52a037",
     "packages": [
         {
             "name": "plisio/plisio-api-php",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Plisio/plisio-api-php.git",
-                "reference": "042d768ec3d0cfa2310ef63c1f59264aacec112c"
+                "reference": "1956fdc0e525d8e60b076bf880184a5a33e3fc0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Plisio/plisio-api-php/zipball/042d768ec3d0cfa2310ef63c1f59264aacec112c",
-                "reference": "042d768ec3d0cfa2310ef63c1f59264aacec112c",
+                "url": "https://api.github.com/repos/Plisio/plisio-api-php/zipball/1956fdc0e525d8e60b076bf880184a5a33e3fc0d",
+                "reference": "1956fdc0e525d8e60b076bf880184a5a33e3fc0d",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 "plisio",
                 "zcash"
             ],
-            "time": "2020-08-14T12:04:02+00:00"
+            "time": "2020-08-18T12:48:24+00:00"
         }
     ],
     "packages-dev": [],
@@ -57,6 +57,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-pdo": "*"
+    },
     "platform-dev": []
 }

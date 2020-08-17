@@ -1,5 +1,7 @@
 <?php
 return [
-    'secret_key' => '5gSrq68tMO42TYk5VqvgnBaxs3aSifexEyZFf0bCXZr9x5k1ymfZlPgbkJj-1o1M',
-    'dsn' => 'sqlite:'.dirname(__FILE__). DIRECTORY_SEPARATOR . 'mydb.sq3'
+    'secret_key' => '',
+    'db_username' => 'demo',
+    'db_password' => 'demoPass',
+    'dsn' => 'mysql:host=192.168.88.112;dbname=demo;charset=utf8',
 ];
