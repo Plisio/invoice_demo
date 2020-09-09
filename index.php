@@ -60,57 +60,58 @@ if (isset($_GET['page'])) {
         'amount' => FILTER_VALIDATE_FLOAT,
         'order_number' => FILTER_VALIDATE_INT,
         'amount_usd' => FILTER_VALIDATE_FLOAT,
+        'email' => FILTER_VALIDATE_EMAIL,
     ];
 
     //validate user input
     $errors = [];
-    foreach ($validators as $field => $validator) {
-        if (isset($_POST[$field])) {
-            if (!filter_var($field, $validator)) {
-                $errors[$field] = 'Invalid ' . $field . ' value';
-            }
-        }
-    }
-    if (empty($errors)) {
-
-        //prepare invoice data
+    if (isset($_POST) && !empty($_POST)) {
         $data = array(
-            'order_number' => $_POST['order_number'],
+            'order_number' => (int)$_POST['order_number'],
             'order_name' => $_POST['order_name'],
             'description' => $_POST['description'],
             'currency' => $_POST['currency'],
             'callback_url' => 'http://' . $_SERVER['HTTP_HOST'] . '/?page=callback',
-//        'email' => $_POST['email']
+            'email' => $_POST['email']
         );
-
         if (isset($_POST['amount_usd']) && $_POST['amount_usd'] == true) {
-            $data['source_amount'] = $_POST['amount_usd'];
+            $data['source_amount'] = (float)$_POST['amount_usd'];
             $data['source_currency'] = 'USD';
         } else {
             $data['amount'] = number_format($_POST['amount'], 8, '.', '');
         }
 
-        $response = $client->createTransaction($data);
+        foreach ($validators as $field => $validator) {
+            if (isset($data[$field])) {
+                if (!filter_var($data[$field], $validator)) {
+                    $errors[$field] = 'Invalid ' . $field . ' value';
+                }
+            }
+        }
 
-        if ($response && $response['status'] !== 'error' && !empty($response['data'])) {
-            $whiteLabel = isset($response['data']['wallet_hash']);
-            if ($orderObject->add(array_merge($response['data'], [
-                'order_id' => $_POST['order_number'],
-                'plisio_invoice_id' => $response['data']['txn_id']
-            ]), $whiteLabel)) {
-                if ($whiteLabel){
-                    header('Location: ?page=invoice&invoice_id=' . $response['data']['txn_id']);
+        if (empty($errors)) {
+
+            $response = $client->createTransaction($data);
+
+            if ($response && $response['status'] !== 'error' && !empty($response['data'])) {
+                $whiteLabel = isset($response['data']['wallet_hash']);
+                if ($orderObject->add(array_merge($response['data'], [
+                    'order_id' => $_POST['order_number'],
+                    'plisio_invoice_id' => $response['data']['txn_id']
+                ]), $whiteLabel)) {
+                    if ($whiteLabel) {
+                        header('Location: ?page=invoice&invoice_id=' . $response['data']['txn_id']);
+                    } else {
+                        header('Location: ' . $response['data']['invoice_url']);
+                    }
                 } else {
-                    header('Location: ' . $response['data']['invoice_url']);
+                    die('');
                 }
             } else {
-                die('');
+                $errors = json_decode($response['data']['message'], true);
             }
-        } else {
-            $errors = json_decode($response['data']['message'], true);
         }
     }
-
     $currencies = $client->getCurrencies();
     if (isset($currencies['status']) && $currencies['status'] === 'success' && isset($currencies['data'])) {
         $currencies = $currencies['data'];

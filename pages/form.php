@@ -13,7 +13,7 @@
                     <label for="currency">Cryptocurrency:</label>
                     <select name="currency" class="form-control" id="currency" required>
                         <?php foreach ($currencies as $currency): ?>
-                            <option value="<?php echo $currency['cid']; ?>"><?php echo $currency['name']; ?></option>
+                            <option value="<?php echo $currency['cid']; ?>" <?=(isset($_POST['currency']) && $_POST['currency']== $currency['cid']? 'selected' : '');?>><?php echo $currency['name']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -31,22 +31,27 @@
                             </div>
                         </div>
                     </div>
-                    <input type="text" name="amount" class="form-control" id="amount" required/>
+                    <input type="text" name="amount" class="form-control" id="amount" required value="<?=(isset($_POST['amount']) ? $_POST['amount'] : 0);?>" />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Customer email:</label>
+                  <input type="email" name="email" class="form-control" id="email" required value="<?=(isset($_POST['email']) ? $_POST['email'] : '');?>" placeholder="Email"/>
                 </div>
 
                 <div class="form-group">
                     <label for="order_number">Order number:</label>
-                    <input type="number" name="order_number" class="form-control" id="order_number" required/>
+                    <input type="number" name="order_number" class="form-control" id="order_number" required value="<?=(isset($_POST['order_number']) ? $_POST['order_number'] : 0);?>"/>
                 </div>
 
                 <div class="form-group">
                     <label for="order_name">Order name:</label>
-                    <input type="text" name="order_name" class="form-control" id="order_name" required/>
+                    <input type="text" name="order_name" class="form-control" id="order_name" required value="<?=(isset($_POST['order_name']) ? $_POST['order_name'] : 0);?>"/>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Order description:</label>
-                    <textarea name="description" class="form-control" id="description"></textarea>
+                    <textarea name="description" class="form-control" id="description"><?=(isset($_POST['description']) ? $_POST['description'] : 0);?></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary align-self-end">Create invoice</button>
